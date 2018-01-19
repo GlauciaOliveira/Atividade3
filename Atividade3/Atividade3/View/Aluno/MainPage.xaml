@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Atividade3.View.Aluno.MainPage"
+             Title="Notas" x:Name="pageNotas">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adicionar" x:Name="btnAddAluno" Command="{Binding OnNovoCMD}" Order="Primary" Priority="1" />
+        <ToolbarItem Text="Sair" x:Name="btnSair" Command="{Binding OnSairCMD}" Order="Secondary" Priority="1" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid Padding="5" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="layPesquisa" Grid.Row="0" Padding="5">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <Label Text="Bem-vindo, " FontSize="15"/>
+                    <Label Text="{Binding Nome}" FontSize="15" FontAttributes="Bold" />
+                </StackLayout>
+                <SearchBar Placeholder="Pesquisar por nome" Text="{Binding PesquisaPorNome}" />
+            </StackLayout>
+
+            <StackLayout x:Name="layLista" Grid.Row="1" Padding="7">
+                <ListView x:Name="lstAlunos" ItemsSource="{Binding Alunos}"                           
+                          SelectedItem="{Binding Selecionado, Mode=TwoWay}" RowHeight="55"
+                          IsGroupingEnabled="true" 
+  		                  GroupDisplayBinding="{Binding Nome}" 
+  		                  GroupShortNameBinding="{Binding Nome}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--<ViewCell.ContextActions>
+                                    <MenuItem Text="Remover" IsDestructive="True"
+                                              Command="{Binding Path=BindingContext.OnDeleteAlunoCMD, Source={x:Reference Name=pageNotas}}" 
+                                              CommandParameter="{Binding .}" />
+                                    <MenuItem Text="Editar" IsDestructive="False"
+                                              Command="{Binding Path=BindingContext.OnEditarAlunoCMD, Source={x:Reference Name=pageNotas}}"
+                                              CommandParameter="{Binding .}" />
+                                    <MenuItem Command="{Binding Path=BindingContext.OnEditarAlunoCMD, Source={x:Reference Name=pageNotas}}"
+                                              CommandParameter="{Binding .}"
+                                              Text="Teste"
+                                              IsDestructive="True" />
+                                </ViewCell.ContextActions>-->
+                                <StackLayout Padding="5,0,5,0">
+                                    <Label Text="{Binding Nome}" Font="15" />
+                                    <Grid Padding="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="60" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" Text="{Binding RM}" Font="12" HorizontalOptions="Start" />
+                                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding IsAprovado}" Font="12"  />
+                                        <Button Grid.Column="3" Grid.Row="0" Text="Editar" HorizontalOptions="Start" Font="12" 
+                                              Command="{Binding Path=BindingContext.OnEditarAlunoCMD, Source={x:Reference Name=pageNotas}}" 
+                                              CommandParameter="{Binding .}" />
+
+                                        <Button Grid.Column="4" Grid.Row="0" Text="Remover" HorizontalOptions="Start" Font="12" 
+                                              Command="{Binding Path=BindingContext.OnDeleteAlunoCMD, Source={x:Reference Name=pageNotas}}" 
+                                              CommandParameter="{Binding .}" />
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+
+    
+    <!--<ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                <Button x:Name="btnNovo" Text="Novo" Clicked="OnNovo" />
+            </StackLayout>
+            <Label Text="Alunos" Font="18" />
+            --><!--<ListView x:Name="lstAlunos" ItemsSource="{Binding Alunos}" ItemTapped="OnAlunoTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5,0,5,0">
+                                <Label Text="{Binding Nome}" Font="14" />
+                                <Label Text="{Binding Email}" Font="10" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>--><!--
+        </StackLayout>
+    </ContentPage.Content>-->
+</ContentPage>
